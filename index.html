@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>منصة ثانوية · مدرسين 3 ثانوي · داكن</title>
-    <!-- SEO Meta -->
-    <meta name="description" content="منصة ثانوية – قائمة مدرسين 3 ثانوي مع الأسعار والروابط. اختر مادتك وابدأ التعلم." />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://thanawya-platform.com" />
+    
+    <!-- ===== SEO = 0 (إخفاء من محركات البحث) ===== -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="canonical" href="#" />
 
     <!-- Google Fonts + Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,15 +26,24 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
             background: #0b0e17;
             color: #eef2ff;
             padding: 30px 20px;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .container {
+            width: 100%;
             max-width: 900px;
             margin: 0 auto;
         }
@@ -46,9 +58,10 @@
             color: #f1f5f9;
             box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8);
             border: 1px solid #2d3a4f;
+            width: 100%;
         }
         .header h1 {
-            font-size: 2.2rem;
+            font-size: clamp(1.6rem, 5vw, 2.2rem);
             font-weight: 800;
             letter-spacing: 1px;
         }
@@ -56,7 +69,7 @@
             color: #60a5fa;
         }
         .header p {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             opacity: 0.8;
             margin-top: 8px;
         }
@@ -70,6 +83,7 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             border: 1px solid #26303f;
             transition: 0.2s;
+            width: 100%;
         }
         .subject-card:hover {
             border-color: #3b4a62;
@@ -77,17 +91,18 @@
         }
 
         .subject-title {
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
             font-weight: 800;
             color: #f1f5f9;
             margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
         .subject-title i {
             color: #60a5fa;
-            font-size: 1.6rem;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
         }
 
         .subject-divider {
@@ -103,13 +118,14 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 16px 24px;
-            padding: 16px 18px;
+            gap: 12px 20px;
+            padding: 14px 16px;
             background: #1e2735;
             border-radius: 16px;
             margin-bottom: 12px;
             border-right: 4px solid #3b82f6;
             transition: 0.15s;
+            width: 100%;
         }
         .teacher-row:hover {
             background: #283240;
@@ -121,9 +137,10 @@
 
         .teacher-name {
             font-weight: 700;
-            font-size: 1.1rem;
-            min-width: 160px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
             color: #f1f5f9;
+            flex: 1 1 140px;
+            min-width: 120px;
         }
         .teacher-name i {
             color: #60a5fa;
@@ -133,30 +150,31 @@
 
         .teacher-price {
             background: #1e3a5f;
-            padding: 4px 16px;
+            padding: 4px 14px;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
             color: #93c5fd;
             white-space: nowrap;
             border: 1px solid #2d4a78;
+            flex-shrink: 0;
         }
 
         .teacher-link {
-            margin-right: auto;
             background: #2563eb;
             color: #fff;
-            padding: 8px 24px;
+            padding: 7px 18px;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             transition: 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             white-space: nowrap;
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            flex-shrink: 0;
         }
         .teacher-link:hover {
             background: #3b82f6;
@@ -178,33 +196,74 @@
             text-align: center;
             margin-top: 40px;
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
             padding: 20px;
             border-top: 1px solid #26303f;
+            width: 100%;
         }
         .footer-note i {
             color: #60a5fa;
         }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 600px) {
+        /* ===== RESPONSIVE - يتكيف مع أي شاشة ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px 12px;
+            }
+            .subject-card {
+                padding: 18px 16px;
+            }
+            .teacher-row {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px 14px;
+                padding: 12px 14px;
+            }
+            .teacher-name {
+                flex: 1 1 100%;
+                min-width: 100%;
+            }
+            .teacher-price {
+                flex: 0 1 auto;
+            }
+            .teacher-link {
+                flex: 0 1 auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 8px;
+            }
+            .header {
+                padding: 20px 15px;
+                margin-bottom: 25px;
+            }
+            .subject-card {
+                padding: 14px 12px;
+                margin-bottom: 20px;
+            }
             .teacher-row {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 10px;
+                gap: 8px;
+                padding: 12px;
+            }
+            .teacher-name {
+                flex: 1 1 auto;
+                min-width: unset;
+            }
+            .teacher-price {
+                align-self: flex-start;
             }
             .teacher-link {
                 margin-right: 0;
                 justify-content: center;
+                width: 100%;
             }
-            .teacher-name {
-                min-width: unset;
-            }
-            .header h1 {
-                font-size: 1.6rem;
-            }
-            .subject-title {
-                font-size: 1.4rem;
+            .subject-divider {
+                width: 40px;
             }
         }
 
@@ -217,7 +276,6 @@
             color: #93c5fd;
         }
 
-        /* تحسين التباين لعناصر التفاعل */
         .teacher-link:focus-visible {
             outline: 3px solid #60a5fa;
             outline-offset: 4px;
@@ -311,7 +369,7 @@
                 if (subject.teachers.length === 0) {
                     html += `<div class="no-teachers">❌ مفيش مدرسين متاحين حالياً</div>`;
                 } else {
-                    subject.teachers.forEach((teacher, index) => {
+                    subject.teachers.forEach((teacher) => {
                         html += `
                             <div class="teacher-row">
                                 <span class="teacher-name"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> ${teacher.name}</span>
