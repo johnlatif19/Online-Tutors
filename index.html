@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة ثانوية · مدرسين 3 ثانوي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f0f4ff;
+            color: #1a1e2b;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 30px;
+            color: #fff;
+            box-shadow: 0 20px 40px -10px rgba(37,99,235,0.3);
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        /* subject card */
+        .subject-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 24px 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            border: 1px solid rgba(37,99,235,0.08);
+            transition: 0.2s;
+        }
+        .subject-card:hover {
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        .subject-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .subject-title i {
+            color: #2563eb;
+            font-size: 1.6rem;
+        }
+        .subject-divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 10px;
+            margin: 6px 0 20px 0;
+        }
+
+        /* teacher row */
+        .teacher-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px 24px;
+            padding: 16px 18px;
+            background: #f8faff;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            border-right: 4px solid #2563eb;
+            transition: 0.15s;
+        }
+        .teacher-row:hover {
+            background: #eef4ff;
+        }
+        .teacher-row:last-child {
+            margin-bottom: 0;
+        }
+        .teacher-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 160px;
+            color: #0f172a;
+        }
+        .teacher-name i {
+            color: #2563eb;
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+        .teacher-price {
+            background: #dbeafe;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #1d4ed8;
+            white-space: nowrap;
+        }
+        .teacher-link {
+            margin-right: auto;
+            background: #2563eb;
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .teacher-link:hover {
+            background: #1d4ed8;
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+        }
+        .teacher-link i {
+            font-size: 0.8rem;
+        }
+
+        .no-teachers {
+            color: #94a3b8;
+            font-style: italic;
+            padding: 10px 0;
+        }
+
+        /* responsive */
+        @media (max-width: 600px) {
+            .teacher-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .teacher-link {
+                margin-right: 0;
+                justify-content: center;
+            }
+            .teacher-name {
+                min-width: unset;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .subject-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 40px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>📚 منصة ثانوية</h1>
+        <p>اختر مادتك وشوف المدرسين المتاحين مع السعر واللينك</p>
+    </div>
+
+    <!-- SUBJECTS + TEACHERS -->
+    <div id="subjectsContainer"></div>
+
+    <div class="footer-note">
+        <i class="fas fa-graduation-cap"></i> كل المدرسين متخصصين في 3 ثانوي · بالتوفيق يا أبطال 🏆
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    //  DATA - كل البيانات في مكان واحد علشان تعديلها بسهولة
+    // ============================================================
+    const subjectsData = [
+        {
+            name: "اللغة العربية",
+            icon: "fa-solid fa-book",
+            teachers: [
+                { name: "مستر رضا فاروق", price: "460 ج.م / ٣ شهور", url: "https://mrredaelfarouk.com" },
+                { name: "مستر محمد صلاح", price: "450 ج.م / ٣ شهور", url: "https://bassthalk.com" }
+            ]
+        },
+        {
+            name: "اللغة الإنجليزية",
+            icon: "fa-solid fa-language",
+            teachers: [
+                { name: "مستر عبقري لغة", price: "480 ج.م / ٣ شهور", url: "https://ahmed-tarek.net" },
+                { name: "مستر انجلشاوي", price: "500 ج.م / ٣ شهور", url: "https://www.mrenglishawy.com/ar/dashboard" }
+            ]
+        },
+        {
+            name: "الكيمياء",
+            icon: "fa-solid fa-calculator",
+            teachers: [
+                { name: "مستر خالد صقر", price: "٤٨٠ ج.م / ٣ شهور", url: "https://khaled-sakr.com" },
+                { name: "مستر محمد عبد الجواد", price: "٥٢٠ ج.م / ٣ شهور", url: "https://magacademy.co" }
+            ]
+        },
+        {
+            name: "الفيزياء",
+            icon: "fa-solid fa-atom",
+            teachers: [
+                { name: "مستر محمد عبد المعبود", price: "505 ج.م / ٣ شهور", url: "https://abdelmaaboud.com" },
+                { name: "مستر كيرلس القس", price: "425 ج.م / ٣ شهور", url: "https://www.doctorinphysics.com" }
+            ]
+        },
+        {
+            name: "الاحياء",
+            icon: "fa-solid fa-flask",
+            teachers: [
+                { name: "مستر احمد الجوهري", price: "في كذا سعر للاسف لازم تسأل حد علمي علوم علشان معرفش", url: "https://ahmed-elgohary.com" }
+            ]
+        }
+    ];
+
+    // ============================================================
+    //  RENDER
+    // ============================================================
+    function renderAll() {
+        const container = document.getElementById('subjectsContainer');
+        let html = '';
+
+        subjectsData.forEach(subject => {
+            html += `
+                <div class="subject-card">
+                    <div class="subject-title">
+                        <i class="${subject.icon}"></i> ${subject.name}
+                    </div>
+                    <div class="subject-divider"></div>
+            `;
+
+            if (subject.teachers.length === 0) {
+                html += `<div class="no-teachers">❌ مفيش مدرسين متاحين حالياً</div>`;
+            } else {
+                subject.teachers.forEach(teacher => {
+                    html += `
+                        <div class="teacher-row">
+                            <span class="teacher-name"><i class="fas fa-chalkboard-teacher"></i> ${teacher.name}</span>
+                            <span class="teacher-price">💰 ${teacher.price}</span>
+                            <a href="${teacher.url}" target="_blank" class="teacher-link">
+                                <i class="fas fa-external-link-alt"></i> شوف الكورس
+                            </a>
+                        </div>
+                    `;
+                });
+            }
+
+            html += `</div>`;
+        });
+
+        container.innerHTML = html;
+    }
+
+    // ============================================================
+    //  START
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', renderAll);
+</script>
+
+</body>
+</html>
